@@ -1,0 +1,50 @@
+###Example to create new md5sum file
+md5deep -er /home/S4S/Original_data/20130530/CEL/MYS_1-7_CDP_1-5_S4S_1-4/* \
+>md5sum_CEL_MYS1-7_CDP1-5_S4S1-4_VIPBG_20130606.txt &
+
+cd /home/S4S/Original_data/20130530/Manifests 
+
+###Check CEL files
+md5deep -erwM md5sum_CEL_MYS1-7_CDP1-5_S4S1-4_20130516.txt \
+/home/S4S/Original_data/20130530/CEL/MYS_1-7_CDP_1-5_S4S_1-4/* \
+>checksum_CEL_MYS1-7_CDP1-5_S4S1-4_20130516.txt &
+
+md5deep -erwM md5sum_CEL_S4S_5-24_20130606.txt \
+/home/S4S/Original_data/20130530/CEL/S4S_5-24/* \
+>checksum_CEL_S4S_5-24_20130606.txt &
+
+###Check CHP files
+md5deep -erwM md5sum_CEL_MYS1-7_CDP1-5_S4S1-4_20130516.txt \
+/home/S4S/Original_data/20130530/CHP/MYS_1-7_CDP_1-5_S4S_1-4/* \
+>checksum_CHP_MYS1-7_CDP1-5_S4S1-4_20130516.txt &
+
+###Check genotype files
+md5deep -erwM md5sum_Genotype_MYS1-7_CDP1-5_S4S1-4_20130516.txt \
+/home/S4S/Original_data/20130530/genotypes/MYS_1-7_CDP_1-5_S4S_1-4/* \
+>checksum_genos_MYS1-7_CDP1-5_S4S1-4_20130516.txt &
+
+md5deep -erwM md5sum_Genotype_S4S_5-24_20130606.txt \
+/home/S4S/Original_data/20130530/genotypes/S4S_5-24/* \
+>checksum_genos_S4S_5-24_20130606.txt &
+
+###Count number of lines in md5sum
+wc -l md5sum_CEL_MYS1-7_CDP1-5_S4S1-4_20130516.txt
+wc -l md5sum_CEL_S4S_5-24_20130606.txt
+wc -l md5sum_Genotype_MYS1-7_CDP1-5_S4S1-4_20130516.txt
+wc -l md5sum_Genotype_S4S_5-24_20130606.txt
+
+###Count number of lines in checksum
+wc -l checksum_CEL_MYS1-7_CDP1-5_S4S1-4_20130516.txt
+wc -l checksum_CHP_MYS1-7_CDP1-5_S4S1-4_20130516.txt
+wc -l checksum_CEL_S4S_5-24_20130606.txt
+wc -l checksum_genos_MYS1-7_CDP1-5_S4S1-4_20130516.txt
+wc -l checksum_genos_S4S_5-24_20130606.txt
+
+###Count lines with 'matched' in checksum
+grep matched checksum_CEL_MYS1-7_CDP1-5_S4S1-4_20130516.txt | wc -l
+grep matched checksum_CHP_MYS1-7_CDP1-5_S4S1-4_20130516.txt | wc -l
+grep matched checksum_CEL_S4S_5-24_20130606.txt | wc -l
+grep matched checksum_genos_MYS1-7_CDP1-5_S4S1-4_20130516.txt | wc -l
+grep matched checksum_genos_S4S_5-24_20130606.txt  | wc -l
+
+###Do these counts match files in manifest?
